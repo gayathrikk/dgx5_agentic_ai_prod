@@ -12,7 +12,7 @@ import java.util.Properties;
 public class Agentic_ai_prod {
 
     @Test(priority = 1)
-    public void Php_Status() {
+    public void Agentic_ai_prod() {
 
         String vmIpAddress = "172.20.23.157";
         String username = "appUser";
@@ -122,4 +122,5 @@ public class Agentic_ai_prod {
         }
     }
 }
+
 
