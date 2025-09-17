@@ -70,16 +70,13 @@ public class Agentic_ai_prod {
 
         // TO recipients
         String[] to = {
-            "nitheshkumarsundhar@gmail.com",
-            "ramanan@htic.iitm.ac.in"
+            "sriramv@htic.iitm.ac.in"
         };
 
         // CC recipients
         String[] cc = {
             "divya.d@htic.iitm.ac.in",
-            "venip@htic.iitm.ac.in",
-            "meena@htic.iitm.ac.in",
-            "gayathri@htic.iitm.ac.in"
+            "venip@htic.iitm.ac.in"
         };
 
         String subject = "Docker Container Alert - Agentic_ai_prod";
@@ -122,5 +119,6 @@ public class Agentic_ai_prod {
         }
     }
 }
+
 
 
