@@ -12,17 +12,17 @@ import java.util.Properties;
 public class Agentic_ai_prod {
 
     @Test(priority = 1)
-    public void Agentic_ai_prod() {
+    public void Agentic_ai_prod_Status() {
 
         String vmIpAddress = "172.20.23.157";
         String username = "appUser";
         String password = "Brain@123";
-        String containerId = "d1a00d0781b2";
+        String containerName = "agentic_ai_prod_https";  
 
-        System.out.println("Agentic_ai_prod Docker ID = " + containerId);
+        System.out.println("Agentic_ai_prod Docker Name = " + containerName);
 
-        if (containerId.isEmpty()) {
-            System.out.println("Container ID is required.");
+        if (containerName.isEmpty()) {
+            System.out.println("Container name is required.");
             return;
         }
 
@@ -33,9 +33,9 @@ public class Agentic_ai_prod {
             session.setConfig("StrictHostKeyChecking", "no");
             session.connect();
 
-            // Execute the docker inspect command to check the container's status
+            // ✅ Using container name directly
             ChannelExec channel = (ChannelExec) session.openChannel("exec");
-            channel.setCommand("docker inspect --format='{{.State.Status}}' " + containerId);
+            channel.setCommand("docker inspect --format='{{.State.Status}}' " + containerName);
             channel.setInputStream(null);
             channel.setErrStream(System.err);
             BufferedReader reader = new BufferedReader(new InputStreamReader(channel.getInputStream()));
@@ -56,7 +56,7 @@ public class Agentic_ai_prod {
 
             // If container is not running, send alert
             if (!isRunning) {
-                sendEmailAlert("Hi,\n\n🚨 This is Agentic_ai_prod Docker. I am currently down. Kindly restart the container at your earliest convenience.");
+                sendEmailAlert("Hi,\n\n🚨 This is Agentic_ai_prod Docker (agentic_ai_prod_https). I am currently down. Kindly restart the container at your earliest convenience.");
                 assert false : "Container is not in the expected state.";
             }
 
@@ -99,7 +99,6 @@ public class Agentic_ai_prod {
             Message message = new MimeMessage(mailSession);
             message.setFrom(new InternetAddress(from, "Docker Monitor"));
 
-            // Convert arrays to comma-separated strings
             message.setRecipients(
                 Message.RecipientType.TO,
                 InternetAddress.parse(String.join(",", to))
@@ -119,6 +118,3 @@ public class Agentic_ai_prod {
         }
     }
 }
-
-
-
